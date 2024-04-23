@@ -1,0 +1,17 @@
+;
+; BIND data file for local loopback interface
+;
+$TTL	604800
+@	IN	SOA	ns.root-server.net. root.localhost. (
+			      2		; Serial
+			 604800		; Refresh
+			  86400		; Retry
+			2419200		; Expire
+			 604800 )	; Negative Cache TTL
+;
+		NS	ns.root-server.net.
+ns.root-server.net.	A	172.16.20.100
+
+com.		NS	ns.tld-server.net.
+ns.tld-server.net	A	172.16.20.200
+

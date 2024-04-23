@@ -1,0 +1,51 @@
+vyos@OPC-P2:~$ show configuration commands 
+set interfaces ethernet eth0 address '100.64.100.125/24'
+set interfaces ethernet eth0 hw-id '00:0c:29:df:ad:82'
+set interfaces ethernet eth0 vrf 'MGMT'
+set interfaces ethernet eth1 address '10.172.24.2/24'
+set interfaces ethernet eth1 hw-id '00:0c:29:df:ad:8c'
+set interfaces ethernet eth2 address '10.172.12.2/24'
+set interfaces ethernet eth2 hw-id '00:0c:29:df:ad:96'
+set interfaces ethernet eth3 hw-id '00:0c:29:df:ad:a0'
+set interfaces ethernet eth4 address '10.172.113.2/24'
+set interfaces ethernet eth4 hw-id '00:0c:29:df:ad:aa'
+set interfaces loopback lo address '10.109.0.12/32'
+set protocols mpls interface 'eth1'
+set protocols mpls interface 'eth2'
+set protocols mpls interface 'lo'
+set protocols mpls interface 'eth4'
+set protocols mpls ldp discovery transport-ipv4-address '10.109.0.12'
+set protocols mpls ldp interface 'eth1'
+set protocols mpls ldp interface 'eth2'
+set protocols mpls ldp interface 'lo'
+set protocols mpls ldp interface 'eth4'
+set protocols mpls ldp router-id '10.109.0.12'
+set protocols ospf interface eth1 area '0'
+set protocols ospf interface eth1 network 'point-to-point'
+set protocols ospf interface eth2 area '0'
+set protocols ospf interface eth2 network 'point-to-point'
+set protocols ospf interface eth4 area '0'
+set protocols ospf interface eth4 network 'point-to-point'
+set protocols ospf interface lo area '0'
+set service ntp allow-client address '0.0.0.0/0'
+set service ntp allow-client address '::/0'
+set service ntp server time1.vyos.net
+set service ntp server time2.vyos.net
+set service ntp server time3.vyos.net
+set service ssh vrf 'MGMT'
+set system config-management commit-revisions '100'
+set system conntrack modules ftp
+set system conntrack modules h323
+set system conntrack modules nfs
+set system conntrack modules pptp
+set system conntrack modules sip
+set system conntrack modules sqlnet
+set system conntrack modules tftp
+set system console device ttyS0 speed '115200'
+set system host-name 'OPC-P2'
+set system login user vyos authentication encrypted-password '$6$rounds=656000$ePlc0fwoKOeWRJRL$AgQZRYzwAkKvYjQiSXRdnml438DqN9Nqw.rOhFK2D/qcIvIvtisplwdyf43NLg8A2rQDEPWCSQqKnIv5OUhl00'
+set system login user vyos authentication plaintext-password ''
+set system syslog global facility all level 'info'
+set system syslog global facility local7 level 'debug'
+set vrf name MGMT protocols static route 0.0.0.0/0 next-hop 100.64.100.1 interface 'eth0'
+set vrf name MGMT table '100'

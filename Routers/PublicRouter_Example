@@ -1,0 +1,47 @@
+vyos@PR2:~$ sh configuration commands 
+set interfaces ethernet eth0 address '100.64.100.128/24'
+set interfaces ethernet eth0 hw-id '00:0c:29:db:2d:b3'
+set interfaces ethernet eth0 vrf 'MGMT'
+set interfaces ethernet eth1 address '172.16.20.1/24'
+set interfaces ethernet eth1 description 'WIN-DNS'
+set interfaces ethernet eth1 hw-id '00:0c:29:db:2d:bd'
+set interfaces ethernet eth2 address '10.60.0.1/31'
+set interfaces ethernet eth2 description 'TO_AS_300'
+set interfaces ethernet eth2 hw-id '00:0c:29:db:2d:c7'
+set interfaces ethernet eth3 address '10.60.0.2/31'
+set interfaces ethernet eth3 description 'TO_AS_100'
+set interfaces ethernet eth3 hw-id '00:0c:29:db:2d:d1'
+set interfaces ethernet eth4 hw-id '00:0c:29:db:2d:db'
+set interfaces ethernet eth5 hw-id '00:0c:29:db:2d:e5'
+set interfaces loopback lo
+set protocols bgp address-family ipv4-unicast network 172.16.82.0/24
+set protocols bgp neighbor 10.60.0.0 address-family ipv4-unicast
+set protocols bgp neighbor 10.60.0.0 remote-as '65300'
+set protocols bgp neighbor 10.60.0.3 address-family ipv4-unicast
+set protocols bgp neighbor 10.60.0.3 remote-as '65100'
+set protocols bgp parameters bestpath as-path multipath-relax
+set protocols bgp system-as '65200'
+set service ntp allow-client address '0.0.0.0/0'
+set service ntp allow-client address '::/0'
+set service ntp server time1.vyos.net
+set service ntp server time2.vyos.net
+set service ntp server time3.vyos.net
+set service ssh port '22'
+set service ssh vrf 'MGMT'
+set system config-management commit-revisions '100'
+set system conntrack modules ftp
+set system conntrack modules h323
+set system conntrack modules nfs
+set system conntrack modules pptp
+set system conntrack modules sip
+set system conntrack modules sqlnet
+set system conntrack modules tftp
+set system console device ttyS0 speed '115200'
+set system host-name 'PR2'
+set system login user vyos authentication encrypted-password '$6$rounds=656000$FSc4J1TX1OLkKhqU$P37y/RsG6qIuo4TsE9dmbXWqpB7VDdF/1EycNV6SbBeLemf.mt3nOOyXyHRgpMb4zIGnN4qj/We078FW7GEjn1'
+set system login user vyos authentication plaintext-password ''
+set system syslog global facility all level 'info'
+set system syslog global facility local7 level 'debug'
+set vrf bind-to-all
+set vrf name MGMT protocols static route 0.0.0.0/0 next-hop 100.64.100.1 interface 'eth0'
+set vrf name MGMT table '100'

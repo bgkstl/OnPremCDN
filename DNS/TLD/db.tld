@@ -1,0 +1,10 @@
+$TTL 1D
+@	IN SOA	ns.tld-servers.net.  dnsops.apnic.net.  (
+					2019111903	; serial
+						1D	; refresh
+						1H	; retry
+						1W	; expire
+						3H )	; minimum
+
+			NS	ns.tld-servers.net.
+ns			A	172.16.20.200

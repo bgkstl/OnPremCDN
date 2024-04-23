@@ -1,0 +1,64 @@
+vyos@OPC-WEST-EDGE:~$ sh configuration commands 
+set interfaces ethernet eth0 address '100.64.100.123/24'
+set interfaces ethernet eth0 hw-id '00:0c:29:3c:81:28'
+set interfaces ethernet eth0 vrf 'MGMT'
+set interfaces ethernet eth1 address '10.109.80.83/31'
+set interfaces ethernet eth1 hw-id '00:0c:29:3c:81:32'
+set interfaces ethernet eth2 address '10.160.0.3/31'
+set interfaces ethernet eth2 hw-id '00:0c:29:3c:81:3c'
+set interfaces ethernet eth3 address '10.172.0.1/31'
+set interfaces ethernet eth3 hw-id '00:0c:29:3c:81:46'
+set interfaces ethernet eth4 address '10.172.113.1/24'
+set interfaces ethernet eth4 hw-id '00:0c:29:3c:81:50'
+set interfaces ethernet eth5 address '10.191.0.1/31'
+set interfaces ethernet eth5 hw-id '00:0c:29:3c:81:5a'
+set interfaces ethernet eth6 hw-id '00:0c:29:3c:81:64'
+set interfaces ethernet eth7 hw-id '00:0c:29:3c:81:6e'
+set interfaces loopback lo address '10.109.0.3/32'
+set protocols bgp address-family ipv4-unicast network 10.160.0.2/31
+set protocols bgp neighbor 10.109.0.1 address-family ipv4-unicast nexthop-self
+set protocols bgp neighbor 10.109.0.1 remote-as '65900'
+set protocols bgp neighbor 10.109.0.1 update-source 'lo'
+set protocols bgp neighbor 10.191.0.0 address-family ipv4-unicast nexthop-self
+set protocols bgp neighbor 10.191.0.0 remote-as '65100'
+set protocols bgp system-as '65900'
+set protocols mpls interface 'eth4'
+set protocols mpls interface 'lo'
+set protocols mpls ldp discovery transport-ipv4-address '10.109.0.3'
+set protocols mpls ldp interface 'lo'
+set protocols mpls ldp interface 'eth4'
+set protocols mpls ldp router-id '10.109.0.3'
+set protocols ospf interface eth1 area '0'
+set protocols ospf interface eth1 network 'point-to-point'
+set protocols ospf interface eth1 passive
+set protocols ospf interface eth2 area '0'
+set protocols ospf interface eth2 passive
+set protocols ospf interface eth3 area '0'
+set protocols ospf interface eth3 passive
+set protocols ospf interface eth4 area '0'
+set protocols ospf interface eth4 network 'point-to-point'
+set protocols ospf interface lo area '0'
+set service ntp allow-client address '0.0.0.0/0'
+set service ntp allow-client address '::/0'
+set service ntp server time1.vyos.net
+set service ntp server time2.vyos.net
+set service ntp server time3.vyos.net
+set service ssh port '22'
+set service ssh vrf 'MGMT'
+set system config-management commit-revisions '100'
+set system conntrack modules ftp
+set system conntrack modules h323
+set system conntrack modules nfs
+set system conntrack modules pptp
+set system conntrack modules sip
+set system conntrack modules sqlnet
+set system conntrack modules tftp
+set system console device ttyS0 speed '115200'
+set system host-name 'OPC-WEST-EDGE'
+set system login user vyos authentication encrypted-password '$6$rounds=656000$7qV.geicSSYa.oyJ$1NL2n0Ol7yp7cGRKzLwTIptm3scL6b/tIUnojMru3MhLHUPktTe9H6Gxk2M81bZluqF/Ygslw4XyCb7WsUanO1'
+set system login user vyos authentication plaintext-password ''
+set system syslog global facility all level 'info'
+set system syslog global facility local7 level 'debug'
+set vrf bind-to-all
+set vrf name MGMT protocols static route 0.0.0.0/0 next-hop 100.64.100.1 interface 'eth0'
+set vrf name MGMT table '100'
